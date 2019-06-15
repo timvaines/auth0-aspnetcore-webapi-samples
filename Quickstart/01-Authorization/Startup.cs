@@ -35,7 +35,7 @@ namespace WebAPIApplication
                     builder =>
                     {
                         builder
-                        .WithOrigins("http://localhost:3000") 
+                        .WithOrigins("http://localhost:4200", "http://localhost:3010") 
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .AllowCredentials();
@@ -57,6 +57,7 @@ namespace WebAPIApplication
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("read:messages", policy => policy.Requirements.Add(new HasScopeRequirement("read:messages", domain)));
+                options.AddPolicy("write:messages", policy => policy.Requirements.Add(new HasScopeRequirement("write:messages", domain)));
             });
 
             // register the scope authorization handler

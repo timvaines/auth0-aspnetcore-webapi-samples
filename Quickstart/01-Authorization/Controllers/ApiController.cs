@@ -13,7 +13,7 @@ namespace WebAPIApplication.Controllers
         {
             return Json(new
             {
-                Message = "Hello from a public endpoint! You don't need to be authenticated to see this."
+                Message = "Hello from a public .NET Core endpoint! You don't need to be authenticated to see this."
             });
         }
 
@@ -24,18 +24,18 @@ namespace WebAPIApplication.Controllers
         {
             return Json(new
             {
-                Message = "Hello from a private endpoint! You need to be authenticated to see this."
+                Message = "Hello from a private  .NET Core endpoint! You need to be authenticated to see this."
             });
         }
 
         [HttpGet]
-        [Route("private-scoped")]
-        [Authorize("read:messages")]
+        [Route("private-write")]
+        [Authorize("write:messages")]
         public IActionResult Scoped()
         {
             return Json(new
             {
-                Message = "Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this."
+                Message = "Hello from a private .NET Core endpoint! You need to be authenticated and have a scope of write:messages to see this."
             });
         }
 
